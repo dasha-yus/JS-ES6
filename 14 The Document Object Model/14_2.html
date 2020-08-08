@@ -10,19 +10,19 @@
 
 	<script>
   		function byTagName(node, tagName) {
-    		var res = [];
-    		tag = tagName.toUpperCase();
+    			var res = [];
+    			tag = tagName.toUpperCase();
     
-    		function explore(node) {
-      			for (var i = 0; i < node.childNodes.length; i++) {
-        			var child = node.childNodes[i];
-        			if (child.nodeType == document.ELEMENT_NODE &&
-           				child.nodeName == tag) res.push(child);
-           			explore(child);
-      			}
-    		}
+    			function explore(node) {
+      				for (var i = 0; i < node.childNodes.length; i++) {
+        				var child = node.childNodes[i];
+        				if (child.nodeType == document.ELEMENT_NODE &&
+           				    child.nodeName == tag) res.push(child);
+           				explore(child);
+      				}
+    			}
 
-    		explore(node);
+    			explore(node);
   			return res;
   		}
 
