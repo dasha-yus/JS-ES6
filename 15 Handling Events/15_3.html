@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>15_3</title>
+</head>
+<body>
+	<tab-panel>
+  		<div data-tabname="one">Tab one</div>
+  		<div data-tabname="two">Tab two</div>
+  		<div data-tabname="three">Tab three</div>
+	</tab-panel>
+	<script>
+  		function asTabs(node) {
+    		var tabs = Array.from(node.children).map(node => {
+      			var button = document.createElement("button");
+      			button.textContent = node.getAttribute("data-tabname");
+      			var tab = {node, button};
+      			button.addEventListener("click", () => selectTab(tab));
+      			return tab;
+    		});
+
+    		var tabList = document.createElement("div");
+    		for (var {button} of tabs) tabList.appendChild(button);
+    		node.insertBefore(tabList, node.firstChild);
+
+    		function selectTab(selectedTab) {
+      			for (var tab of tabs) {
+        			var selected = tab == selectedTab;
+        			tab.node.style.display = selected ? "" : "none";
+        			tab.button.style.color = selected ? "blue" : "";
+      			}
+    		}
+    		selectTab(tabs[0]);
+  		}
+
+ 		asTabs(document.querySelector("tab-panel"));
+	</script>
+</body>
+</html>
