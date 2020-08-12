@@ -11,16 +11,16 @@
 	<script>
   		async function runGame(plans, Display) {
    			var lives = 3;
-    		for (let level = 0; level < plans.length && lives > 0;) {
-      			console.log(`level: ${level + 1}, lives: ${lives}`);
-      			let status = await runLevel(new Level(plans[level]), Display);
+    			for (let level = 0; level < plans.length && lives > 0;) {
+      				console.log(`level: ${level + 1}, lives: ${lives}`);
+      				let status = await runLevel(new Level(plans[level]), Display);
       
-      			if (status == "won") level++;
-      			else lives--;
-    		}
+      				if (status == "won") level++;
+      				else lives--;
+    			}
 
-    		if (lives > 0) console.log("You've won!");
-    		else console.log("Game over");
+    			if (lives > 0) console.log("You've won!");
+    			else console.log("Game over");
   		}
   		runGame(GAME_LEVELS, DOMDisplay);
 	</script>
