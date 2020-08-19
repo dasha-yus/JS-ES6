@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>File Manager</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/streamsaver@2.0.3/StreamSaver.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="script.js"></script>
+</head>
+<body>
+	<div class='root'></div>
+	<% if(locals.dir){ %>
+		<script type="text/javascript">
+			let getDir = () => <%-dir%>
+			let getParent = () => <%-parent%>
+		</script>
+	<% } %>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="https://unpkg.com/rxjs/bundles/rxjs.umd.min.js"></script>
+	<div class="files"></div>
+
+	<script>
+		function allowDrop(ev) {
+			ev.preventDefault();
+			console.log("ae")
+		}
+
+		function drag(ev) {
+			console.log("ao")
+			ev.dataTransfer.setData("text", ev.target.id);
+		}
+
+		function drop(ev) {
+			console.log("ai")
+			ev.preventDefault();
+			var data = ev.dataTransfer.getData("text");
+			console.log(ev.dataTransfer)
+		}
+	</script>
+</body>
+</html>
